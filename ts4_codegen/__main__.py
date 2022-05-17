@@ -137,6 +137,8 @@ if __name__ == '__main__':
                     functions = [
                         fu for fu in abi_json['functions'] if fu['name'] not in ['constructor'] + fields
                     ]
+                    if not name[0].isalpha() or name[0] != '_':
+                        name = '_' + name
                     print(template.render(
                         name=name,
                         static_variables=list(map(lambda d: d['name'], abi_json['data'])),
