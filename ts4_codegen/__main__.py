@@ -144,3 +144,6 @@ if __name__ == '__main__':
                         functions=functions,
                         fields=fields,
                     ), file=f)
+
+                with open(os.path.join(target_dir, '__init__.py'), 'a') as f:
+                    print(f'from .{name} import {name}', file=f)
