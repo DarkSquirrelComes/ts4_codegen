@@ -30,6 +30,7 @@ class {{ name }}(ts4.BaseContract):
                 initial_data=dict(),
                 address=address,
                 nickname='{{ name }}',
+                keypair=keypair,
             )
         else:
             super().__init__(
@@ -127,8 +128,11 @@ if __name__ == '__main__':
 
                 name = abi_json_filename[:-9]
                 with open(os.path.join(target_dir, f'{name}.py'), 'w') as f:
+                    all_functions_names = [
+                        fu['name'] for fu in abi_json['functions']
+                    ]
                     fields = [
-                        fi['name'] for fi in abi_json.get('fields', [])
+                        fi['name'] for fi in abi_json.get('fields', []) if fi['name'] in all_functions_names
                     ]
                     functions = [
                         fu for fu in abi_json['functions'] if fu['name'] not in ['constructor'] + fields
