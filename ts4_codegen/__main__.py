@@ -63,6 +63,7 @@ class {{ name }}(ts4.BaseContract):
         {% for arg in function['inputs'] -%}
         {{ arg['name'] }},
         {% endfor %}
+        exit_code=0,
         is_getter=False,
     ):
         if is_getter:
