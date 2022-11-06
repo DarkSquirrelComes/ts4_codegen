@@ -84,6 +84,7 @@ class {{ name }}(ts4.BaseContract):
                     {% endfor %}
                 ),
                 private_key=self.private_key_,
+                expect_ec=exit_code,
             )
 
     {% endfor %}
