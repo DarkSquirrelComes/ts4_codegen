@@ -63,6 +63,7 @@ class {{ name }}(ts4.BaseContract):
         {% for arg in function['inputs'] -%}
         {{ arg['name'] }},
         {% endfor %}
+        exit_code=0,
         is_getter=False,
     ):
         if is_getter:
@@ -83,6 +84,7 @@ class {{ name }}(ts4.BaseContract):
                     {% endfor %}
                 ),
                 private_key=self.private_key_,
+                expect_ec=exit_code,
             )
 
     {% endfor %}
